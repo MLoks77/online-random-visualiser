@@ -48,13 +48,13 @@ def effects(
         return librosa.onset.onset_detect(y=y,
                                 sr=sr, units='time', 
                                 hop_length=512, 
-                                backtrack=False,
-                                pre_max=20,
-                                post_max=20,
-                                pre_avg=50,
-                                post_avg=50,
+                                backtrack=True, # Backtrack to the nearest peak for better sync
+                                pre_max=5,
+                                post_max=5,
+                                pre_avg=10,
+                                post_avg=10,
                                 delta=delta,
-                                wait=0)
+                                wait=10) # Small wait to avoid double-triggers on the same hit
 
     # Calculer le tempo juste pour le fun
     # Calculate tempo for fun
@@ -140,15 +140,18 @@ def effects(
     # SPAWNING SYNCED ON BEAT
     clips_timed = []
 
-    for i, (clip, beat) in enumerate(zip(processed_clips, onset_times)):
-        clips_timed.append(clip.set_start(beat))
+    # ON BOUCLE SUR TOUT LES BEATS
+    # SI PAS ASSEZ D'IMAGES, ON RECOMMENCE
+    for i, beat in enumerate(onset_times):
+        original_clip = processed_clips[i % len(processed_clips)]
+        clips_timed.append(original_clip.set_start(beat))
 
-    print(len(clips_timed), "synced clips")
+    print(f"{len(clips_timed)} clips synchronisés sur {len(onset_times)} beats")
 
 
 
-    # Encoder les clips, audio, et paramètres
-    # Encoding clips, audio and parameters
+    # ENCODAGE
+    # ENCODING
     final_clip = CompositeVideoClip(clips_timed, size=(width, height), bg_color=bg_color)
 
     final_clip = final_clip.set_duration(clip_audio.duration)
@@ -214,4 +217,5 @@ def main():
         delta=args.delta,
     )
 
-main()
+if __name__ == "__main__":
+    main()
