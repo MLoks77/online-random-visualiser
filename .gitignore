@@ -1,0 +1,9 @@
+*.mp4
+*.webm
+*.wav
+/backup
+/__pycache__
+/env
+/media
+/outputs
+/test
