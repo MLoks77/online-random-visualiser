@@ -217,5 +217,7 @@ def main():
         delta=args.delta,
     )
 
+# pour envoyer sur le serveur
+
 if __name__ == "__main__":
     main()
