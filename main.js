@@ -1,8 +1,10 @@
+// lien vers l'api : https://publicapi.dev/lorem-picsum-api
+
 const form = document.getElementById('vis-form');
 const statusDiv = document.getElementById('status');
 const statusText = document.getElementById('status-text');
 const resultDiv = document.getElementById('result');
-const videoPreview = document.getElementById('video-preview');
+const preview = document.getElementById('video-preview');
 const downloadLink = document.getElementById('download-link');
 const submitBtn = document.getElementById('submit-btn');
 const picsumCheckbox = document.getElementById('use-picsum');
@@ -32,11 +34,11 @@ form.addEventListener('submit', async (e) => {
 
     const formData = new FormData();
     formData.append('audio', audioFile);
-    
+
     // Valeurs par défaut optimisées pour le rythme
     formData.append('delta', '0.07'); // Très sensible pour capter tous les beats
     formData.append('img_duration', '2.5'); // Durée équilibrée pour l'empilement
-    
+
     formData.append('use_picsum', usePicsum);
     formData.append('picsum_count', picsumCount.value);
 
@@ -54,12 +56,12 @@ form.addEventListener('submit', async (e) => {
 
         if (data.success) {
             const videoUrl = `http://localhost:5000${data.video_url}`;
-            videoPreview.src = videoUrl;
+            preview.src = videoUrl;
             downloadLink.href = videoUrl;
-            
+
             statusDiv.classList.add('hidden');
             resultDiv.classList.remove('hidden');
-            
+
             resultDiv.scrollIntoView({ behavior: 'smooth' });
         } else {
             throw new Error(data.error || 'Erreur inconnue');

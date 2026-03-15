@@ -7,6 +7,11 @@ Ce projet permet de transformer un fichier audio en une expérience visuelle dyn
 https://codeberg.org/Lelio/random-visualiser-generator
 ```
 
+# API :
+```bash
+https://publicapi.dev/lorem-picsum-api
+```
+
 ## Installation
 
 1. **Prérequis** :
