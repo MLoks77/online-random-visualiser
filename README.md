@@ -1,4 +1,4 @@
-# 🎬 Online Random Visualiser
+# Online Random Visualiser
 
 Ce projet permet de transformer un fichier audio en une expérience visuelle dynamique. Il utilise l'analyse de rythme (beat detection) pour faire apparaître des médias (images/vidéos) de manière aléatoire en synchronisation avec la musique.
 
@@ -40,7 +40,7 @@ https://publicapi.dev/lorem-picsum-api
    - Ajuste la **Sensibilité Beats** (Delta) : plus elle est basse, plus il y aura d'images.
    - Clique sur **Générer**. La vidéo apparaîtra une fois le rendu terminé.
 
-## 📂 Structure du projet
+## Structure du projet
 - `app.py` : Serveur Flask (pont entre le Web et Python).
 - `index.html` / `main.js` : Interface utilisateur et logique frontend.
 - `python/visualiser.py` : Cœur algorithmique de traitement vidéo.
